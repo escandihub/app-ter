@@ -1,0 +1,18 @@
+<ion-card *ngFor="let data of items" (click)="fullInfo(data)">
+  <ion-card-header>
+    <ion-card-title>{{ data.nombre }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          {{ data.raza }}
+        </ion-col>
+        <ion-col>
+          {{data.img}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>

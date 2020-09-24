@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> {{ data.nombre }} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form action="">
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input> {{ data.nombre }}</ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">edad</ion-label>
+            <ion-input> {{ data.edad }} </ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button slot="end" expand="block">Actualizar</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

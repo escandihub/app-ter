@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Ternero</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<!-- <app-card-ternero></app-card-ternero> -->
+<app-card-info
+[datas] = "terneros"
+(propagar)="procesaPropagar($event)"
+></app-card-info>
+</ion-content>

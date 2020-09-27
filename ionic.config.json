@@ -1,5 +1,7 @@
 {
   "name": "slice-menu",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

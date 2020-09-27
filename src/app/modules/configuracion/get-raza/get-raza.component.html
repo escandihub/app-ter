@@ -1,0 +1,19 @@
+<!-- <ion-list> -->
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Razas </ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-item *ngFor="let raza of razas">
+      <ion-label> {{ raza.nombre }} </ion-label>
+    </ion-item>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="openModal()">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-card-content>
+</ion-card>
+<!-- </ion-list> -->

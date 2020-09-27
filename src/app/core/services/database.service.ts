@@ -20,12 +20,16 @@ export class DatabaseService{
     private sqlPorter: SQLitePorter
   ){
     this.platform.ready().then(() => {
+      console.log('esta funcion corre plataform');
+      
       this.sqlite.create({
         name:'database_name.sql',
         location: 'default'
       }).then((db: SQLiteObject) => {
         this.database = db;
         //corremos script method
+        console.log('alimentando');
+        this.seeder();
       });
     });
   }
@@ -38,13 +42,19 @@ export class DatabaseService{
  * Method thad feed the database @databse : SQLiteObject
  */ 
   public seeder(){
-    this.httpClient.get('assent/seed.sql', {responseType: 'text'})
+    this.httpClient.get('assets/seed.sql', {responseType: 'text'})
     .subscribe(data => {
       this.sqlPorter.importSqlToDb(this.database, data)
       .then(_ => {
         // call a variable to add data inside of databse
         this.isDbReady.next(true);
-      }).catch(error => console.error(error))
+        console.log('todo a salido bien ');
+        
+      }).catch(error => {
+        console.log('un erron en la carga de los datos ');
+        
+        console.error(error)
+      })
     })
   }
 

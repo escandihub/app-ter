@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { DatabaseService } from "./database.service";
-import { Rumiante } from "../../share/models/rumiante.model";
+import { Rumiante  } from "../../share/models/rumiante.model";
 
 @Injectable({
   providedIn: 'root'

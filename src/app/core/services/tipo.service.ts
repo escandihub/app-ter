@@ -3,6 +3,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { DatabaseService } from "./database.service";
 import { Tipo } from "../../share/models/tipo.model";
 
+/**
+ * Este servicio se encarga de optener los 
+ * 3 grupos de animaes
+ * la madre
+ * el ternero
+ * el macho 
+ */
+
 @Injectable({
   providedIn: 'root'
 })

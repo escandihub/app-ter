@@ -8,9 +8,13 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'menu',
     pathMatch: 'full'
   },
+  // {
+  //   path: 'configuracion',
+  //   loadChildren: () => import('./modules/configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
+  // },
 ];
 
 @NgModule({

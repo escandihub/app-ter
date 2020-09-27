@@ -27,7 +27,7 @@ export class MenuPage implements OnInit {
     },
     {
       title: 'Configuracion',
-      url:'#'
+      url:'/menu/configuracion'
     },
   ];
 
@@ -44,3 +44,4 @@ export class MenuPage implements OnInit {
   }
 
 }
+

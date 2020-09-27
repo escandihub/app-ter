@@ -19,7 +19,11 @@ const routes: Routes = [
       {
         path: 'ternero',
         loadChildren: '../../modules/ternero/ternero.module#TerneroPageModule'
-      }
+      },
+      {
+        path: 'configuracion',
+        loadChildren: '../../modules/configuracion/configuracion.module#ConfiguracionPageModule'
+      },
     ],
   },
   {

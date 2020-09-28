@@ -8,26 +8,31 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./modal-ternero.component.scss'],
 })
 export class ModalTerneroComponent implements OnInit {
-   @Input()  data: object;
+   @Input() 
+   get data(): object { return this.item }
+   set data(data){
+     this.item = data
+   }
 
   ternero = {};
+  item = {}
 
-
-  constructor(
-    public modalCtrl: ModalController
-    ) { }
+  constructor(public modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.ternero = {...this.data}
   }
 
   dismiss(){
-    this.data = {...this.ternero}
     this.modalCtrl.dismiss({
       'dismissed': true
     });
   }
-  onSubmit(){
-    
+  async onSubmit(){
+    console.log('on sumit');
+    this.data = {...this.ternero}
+    this.modalCtrl.dismiss({
+      data: this.data,
+    })
   }
 }

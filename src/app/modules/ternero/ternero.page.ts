@@ -63,6 +63,22 @@ export class TerneroPage implements OnInit {
       component: ModalTerneroComponent,
       componentProps: {data}
     });
-    return await modal.present();
+    //return 
+    await modal.present();
+
+    /**
+     * Meto que se ejecuta cuando en el onDismiss es emitido
+     */
+    let modalResponse = await modal.onDidDismiss().then(data => {
+      let modalData = data.data.data
+      if(modalData != undefined){
+        this.terneros.filter(el => el.id == modalData.id).map(el => {
+          el.nombre = modalData.nombre
+          console.log(el);
+        });
+      }
+      
+      })
+    
   }
 }

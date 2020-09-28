@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { RazaService } from "../../../core/services/raza.service";
 
 @Component({
   selector: 'app-new-item',
@@ -8,8 +9,11 @@ import { ModalController } from '@ionic/angular';
 })
 export class NewItemComponent implements OnInit {
 
-  raza = ""
-  constructor(private modalCtrl: ModalController) { }
+  nombre: string = 'verde ';
+  name: string = 'LOL';
+  constructor(
+    private  db: RazaService,
+    private modalCtrl: ModalController) { }
 
   ngOnInit() {}
   dismiss(){
@@ -19,7 +23,9 @@ export class NewItemComponent implements OnInit {
   }
 
   saveNewRaza(){
-    console.log('en el modal a salvar ' + this.raza);
+    // this.db.NewRaza(this.nombre);
+    console.log('nombre');
+    console.log( this.nombre);
     
   }
 

@@ -12,42 +12,51 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <form action="" >
+      <form action="">
         <ion-list>
           <ion-item>
             {{ ternero.nombre }}
           </ion-item>
           <ion-item>
-            <ion-label position="stacked" >Nombre</ion-label>
-            <ion-input type="text" [value]="data.nombre" [(ngModel)]="ternero.nombre" name="nombre" ></ion-input>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input
+              type="text"
+              [value]="data.nombre"
+              [(ngModel)]="ternero.nombre"
+              name="nombre"
+            ></ion-input>
           </ion-item>
           <ion-grid>
             <ion-row>
-            <ion-col>
-          <ion-item>
-            <ion-label position="stacked" >edad</ion-label>
-            <ion-input type="number"  [(ngModel)]="data.edad" name="edad">  </ion-input>
-          </ion-item>
-        </ion-col>
-        <!--check style de este texto -->
-        <ion-col style="padding-top: 7%;" >
-          <ion-item >
-            <div style="padding-left: 27%;">
-              <h2 >Meses</h2>
-            </div>
-            
-          </ion-item>
-          
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+              <ion-col>
                 <ion-item>
-                <ion-label position="stacked" >nacimiento</ion-label>
-                  <ion-input type="text"  [(ngModel)]="data.nacimiento" name="nacimiento"></ion-input>
+                  <ion-label position="stacked">edad</ion-label>
+                  <ion-input type="number" [(ngModel)]="data.edad" name="edad">
+                  </ion-input>
                 </ion-item>
+              </ion-col>
+              <!--check style de este texto -->
+              <ion-col style="padding-top: 7%;">
+                <ion-item>
+                  <div style="padding-left: 27%;">
+                    <h2>Meses</h2>
+                  </div>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
           <ion-item>
-            <ion-label position="stacked" >raza</ion-label>
-            <ion-input type="text"  [(ngModel)]="data.raza" name="raza">  </ion-input>
+            <ion-label position="stacked">nacimiento</ion-label>
+            <ion-input
+              type="text"
+              [(ngModel)]="data.nacimiento"
+              name="nacimiento"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">raza</ion-label>
+            <ion-input type="text" [(ngModel)]="data.raza" name="raza">
+            </ion-input>
           </ion-item>
           <ion-item>
             <ion-label> Vendido </ion-label>
@@ -55,7 +64,9 @@
             <ion-checkbox slot="end"></ion-checkbox>
           </ion-item>
         </ion-list>
-        <ion-button slot="end" expand="block" (click)="onSubmit()">Actualizar</ion-button>
+        <ion-button slot="end" expand="block" (click)="onSubmit()"
+          >Actualizar</ion-button
+        >
       </form>
     </ion-card-content>
   </ion-card>

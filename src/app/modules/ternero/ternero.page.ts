@@ -8,27 +8,37 @@ import { ModalTerneroComponent } from './modal-ternero/modal-ternero.component';
   styleUrls: ['./ternero.page.scss'],
 })
 export class TerneroPage implements OnInit {
+  entrada = ''
 
+  /**
+   * hard code of SQLite DATA
+   */
   terneros = [
     {
       id: 1,
       nombre: 'CHil',
       edad: 5,
+      nacimiento: '11/09/2019',
       raza: 'Billmaster',
+      grupo: 'ternero',
       img: 'someImage'
     },
     {
       id: 2,
       nombre: 'Colosio',
       edad: 5,
+      nacimiento: '11/09/2019',
       raza: 'Billmaster',
+      grupo: 'ternero',
       img: 'someImage'
     },
     {
       id: 3,
       nombre: 'Negro',
       edad: 5,
+      nacimiento: '11/09/2019',
       raza: 'Billmaster',
+      grupo: 'ternero',
       img: 'someImage'
     },
   ];

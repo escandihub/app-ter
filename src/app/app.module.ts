@@ -13,10 +13,18 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { RazaReduce } from "./core/store/reduce.store";
+import { RazaEffects } from './core/store/effects.store';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule,
+    StoreModule.forRoot({razas: RazaReduce}),
+    EffectsModule.forRoot([RazaEffects])
+  ],
   providers: [
     StatusBar,
     SplashScreen,

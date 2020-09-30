@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Rumiante } from "../../models/rumiante.model";
 
 @Component({
   selector: 'app-card-info',
@@ -7,11 +8,11 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 })
 export class CardInfoComponent implements OnInit {
 
-  @Input() get datas(): any { return this.items; }
-  set datas(datas: any) {
+  @Input() get datas(): Rumiante { return this.items; }
+  set datas(datas: Rumiante) {
     this.items = datas;
   }
-  protected items = [];
+  protected items: Rumiante;
 
   @Output() propagar = new EventEmitter<string>();
 

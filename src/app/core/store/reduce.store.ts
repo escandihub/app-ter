@@ -5,12 +5,10 @@ export interface State {
   razas: Raza[]
 };
 export const initalState: State = {
-  razas: []
+  razas: null
 };
 
 export function RazaReduce(state = initalState, action: RazaActions) {
-  console.log(action.type);
-
   switch (action.type) {
     case RazaActionTypes.LoadSuccess:
       return {
@@ -25,7 +23,6 @@ export function RazaReduce(state = initalState, action: RazaActions) {
       };
     default:
       console.log('does\'s found');
-
       return state
   }
 }

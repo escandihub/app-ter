@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -15,7 +16,8 @@ import {  ModalTerneroComponent } from "./modal-ternero/modal-ternero.component"
     CommonModule,
     FormsModule,
     IonicModule,
-    TerneroPageRoutingModule
+    TerneroPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [TerneroPage, CardInfoComponent, ModalTerneroComponent]
 })

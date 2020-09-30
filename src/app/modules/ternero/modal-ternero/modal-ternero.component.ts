@@ -1,7 +1,14 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { from } from 'rxjs';
 
+import { select, Store } from '@ngrx/store';
+import { GetRaza } from "../../../core/store/action.store";
 
+import { RazaService } from '../../../core/services/raza.service';
+import { Rumiante } from "../../../share/models/rumiante.model";
 @Component({
   selector: 'app-modal-ternero',
   templateUrl: './modal-ternero.component.html',
@@ -9,18 +16,36 @@ import { ModalController } from '@ionic/angular';
 })
 export class ModalTerneroComponent implements OnInit {
    @Input() 
-   get data(): object { return this.item }
+   get data(): Rumiante { return this.item }
    set data(data){
      this.item = data
    }
 
   ternero = {};
-  item = {}
+  razas = [];
+  item: Rumiante;
+  isDisable: boolean;
 
-  constructor(public modalCtrl: ModalController) { }
+  @Output('ngModelChange') upNombre = new EventEmitter();
+  @Output('ngModelChange') upEdad = new EventEmitter();
+  @Output('ngModelChange') upNacimiento = new EventEmitter();
+  @Output('ngModelChange') upRaza = new EventEmitter();
+  @Output('ngModelChange') upVendido = new EventEmitter();
+   
+
+  constructor(
+    public modalCtrl: ModalController,
+    private store: Store<any>,
+    private razaService: RazaService
+    ) {
+      store.pipe(select('razas')).subscribe(data => (this.razas = data))
+     }
 
   ngOnInit() {
     this.ternero = {...this.data}
+    this.store.dispatch( new GetRaza())
+    console.log(this.razas);
+    
   }
 
   dismiss(){
@@ -30,9 +55,19 @@ export class ModalTerneroComponent implements OnInit {
   }
   async onSubmit(){
     console.log('on sumit');
-    this.data = {...this.ternero}
+    this.data = {...this.item}
     this.modalCtrl.dismiss({
       data: this.data,
     })
+  }
+/** control de eventos cuando se edite  */
+  alterNombre(event){
+    this.isDisable  = true
+  }
+  changeEdad(event){
+    this.isDisable  = true
+  }
+  changeNacimiento(event){
+    this.isDisable  = true
   }
 }

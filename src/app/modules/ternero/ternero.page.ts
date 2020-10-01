@@ -49,7 +49,7 @@ export class TerneroPage implements OnInit {
   }
   // metodo que le llega de 'share/components'
   procesaPropagar(e){
-    console.log('me ha llegado algo tio, es lo de abajo');
+    console.log('MODAL IS OPEN');
     this.showModal(e);
     
   }

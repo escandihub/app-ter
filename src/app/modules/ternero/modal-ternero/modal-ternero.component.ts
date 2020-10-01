@@ -9,6 +9,7 @@ import { GetRaza } from "../../../core/store/action.store";
 
 import { RazaService } from '../../../core/services/raza.service';
 import { Rumiante } from "../../../share/models/rumiante.model";
+import { Raza } from 'src/app/share/models/raza.model';
 @Component({
   selector: 'app-modal-ternero',
   templateUrl: './modal-ternero.component.html',
@@ -38,7 +39,7 @@ export class ModalTerneroComponent implements OnInit {
     private store: Store<any>,
     private razaService: RazaService
     ) {
-      store.pipe(select('razas')).subscribe(data => (this.razas = data))
+      store.pipe(select('razas')).subscribe(data => (this.razas = data.razas))
      }
 
   ngOnInit() {

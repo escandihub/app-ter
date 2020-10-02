@@ -9,7 +9,6 @@ import { TerneroPageRoutingModule } from './ternero-routing.module';
 
 import { TerneroPage } from './ternero.page';
 import { CardInfoComponent } from "../../share/components/card-info/card-info.component";
-import {  ModalTerneroComponent } from "./modal-ternero/modal-ternero.component";
 
 @NgModule({
   imports: [
@@ -19,6 +18,6 @@ import {  ModalTerneroComponent } from "./modal-ternero/modal-ternero.component"
     TerneroPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [TerneroPage, CardInfoComponent, ModalTerneroComponent]
+  declarations: [TerneroPage, CardInfoComponent]
 })
 export class TerneroPageModule {}

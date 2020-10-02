@@ -11,14 +11,16 @@ export class CardInfoComponent implements OnInit {
   @Input() get datas(): Rumiante { return this.items; }
   set datas(datas: Rumiante) {
     this.items = datas;
-  }
+  };
+  @Input() tipo;
   protected items: Rumiante;
 
   @Output() propagar = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {console.log(this.tipo);
+  }
   informacionCompleta(data){
     this.propagar.emit(data);
     

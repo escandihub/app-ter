@@ -1,9 +1,9 @@
-<ion-card *ngFor="let data of items" (click)="informacionCompleta(data)">
+<ion-card *ngFor="let data of items">
   <ion-card-header>
     <ion-card-title>{{ data.nombre }}</ion-card-title>
   </ion-card-header>
 
-  <ion-card-content>
+  <ion-card-content (click)="informacionCompleta(data)">
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -15,4 +15,16 @@
       </ion-row>
     </ion-grid>
   </ion-card-content>
+  <div *ngIf="tipo == 'vaca'">
+    <ion-item>
+      <ion-icon name="eye" slot="start"></ion-icon>
+      <ion-label> Ver hijos </ion-label>
+      <ion-button fill="outline" slot="end"> Abrir </ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="document" slot="start"></ion-icon>
+      <ion-label> Ficha Medica </ion-label>
+      <ion-button fill="outline" slot="end"> Abrir </ion-button>
+    </ion-item>
+  </div>
 </ion-card>

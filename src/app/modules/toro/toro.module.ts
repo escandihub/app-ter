@@ -8,7 +8,7 @@ import { ToroPageRoutingModule } from './toro-routing.module';
 
 import { ToroPage } from './toro.page';
 import {  CardToroComponent} from "./card-toro/card-toro.component";
-
+import { CardInfoComponent } from "../../share/components/card-info/card-info.component";
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +16,6 @@ import {  CardToroComponent} from "./card-toro/card-toro.component";
     IonicModule,
     ToroPageRoutingModule
   ],
-  declarations: [ToroPage, CardToroComponent]
+  declarations: [ToroPage, CardToroComponent, CardInfoComponent]
 })
 export class ToroPageModule {}

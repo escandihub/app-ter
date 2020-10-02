@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> {{ data.nombre }} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="onSubmit()">
+        <ion-list>
+          <ion-item>
+            <!-- uno fila para cualquier item temporal -->
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+
+            <!-- perfilFrom="nombre"
+              
+              --
+              [value]="data.nombre"
+              name="nombre"
+              -->
+            <ion-input
+              type="text"
+              name="nombre"
+              [(ngModel)]="ternero.nombre"
+              (ngModelChange)="alterNombre($event)"
+            ></ion-input>
+          </ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-label position="stacked">edad</ion-label>
+                  <ion-input
+                    [(ngModel)]="ternero.edad"
+                    (ngModelChange)="changeEdad($event)"
+                    type="number"
+                    name="edad"
+                  >
+                  </ion-input>
+                </ion-item>
+              </ion-col>
+              <!--check style de este texto -->
+              <ion-col style="padding-top: 7%;">
+                <ion-item>
+                  <div style="padding-left: 27%;">
+                    <h2>Meses</h2>
+                  </div>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <ion-item>
+            <ion-label position="stacked">nacimiento</ion-label>
+            <ion-input
+              [(ngModel)]="ternero.nacimiento"
+              type="text"
+              name="nacimiento"
+              (ngModelChange)="changeNacimiento($event)"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">raza</ion-label>
+            <ion-input [(ngModel)]="ternero.raza" type="text" name="raza"> </ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label> Vendido </ion-label>
+            <!-- <ion-checkbox slot="end" [(ngModel)]="entry.isChecked"></ion-checkbox> -->
+            <ion-checkbox disabled slot="end"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+        <ion-button
+          slot="end"
+          expand="block"
+          type="submit"
+          [disabled]="!isDisable"
+          >Actualizar</ion-button
+        >
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

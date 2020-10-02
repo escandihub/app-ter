@@ -19,7 +19,7 @@ export class CardInfoComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-  fullInfo(data){
+  informacionCompleta(data){
     this.propagar.emit(data);
     
   }

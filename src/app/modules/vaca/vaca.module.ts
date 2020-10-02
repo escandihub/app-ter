@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { VacaPageRoutingModule } from './vaca-routing.module';
 
 import { VacaPage } from './vaca.page';
+import { CardInfoComponent } from "../../share/components/card-info/card-info.component";
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { VacaPage } from './vaca.page';
     IonicModule,
     VacaPageRoutingModule
   ],
-  declarations: [VacaPage]
+  declarations: [VacaPage, CardInfoComponent]
 })
 export class VacaPageModule {}

@@ -19,7 +19,7 @@ export class MenuPage implements OnInit {
     },
     {
       title: 'Madre',
-      url:'#'
+      url:'/menu/vaca'
     },
     {
       title: 'Padre',

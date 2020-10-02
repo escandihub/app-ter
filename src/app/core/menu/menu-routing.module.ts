@@ -31,6 +31,11 @@ const routes: Routes = [
         loadChildren: () => 
         import('../../modules/configuracion/configuracion.module').then(m => m.ConfiguracionPageModule)
       },
+      {
+        path: 'vaca',
+        loadChildren: () => 
+        import('../../modules/vaca/vaca.module').then(m => m.VacaPageModule)
+      },
     ],
   },
   {

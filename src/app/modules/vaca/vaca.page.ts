@@ -10,7 +10,7 @@ export class VacaPage implements OnInit {
   /** this array gonna be of effect of NgRx
    *  for while i building the views
    */
-
+  vaca = 'vaca'; //difine who's calling the card-info
   vacas = [
     {
       id: 1,

@@ -20,11 +20,12 @@ import { RazaReduce } from "./core/store/reduce.store";
 import { RazaEffects } from './core/store/effects.store';
 
 import {NewRumianteComponent  } from "./share/components/new-rumiante/new-rumiante.component";
+import {  ModalFullInfoComponent } from "./share/components/modal-full-info/modal-full-info.component";
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DatePicker } from '@ionic-native/date-picker/ngx';
 @NgModule({
-  declarations: [AppComponent, NewRumianteComponent],
+  declarations: [AppComponent, NewRumianteComponent, ModalFullInfoComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule,
     StoreModule.forRoot({razas: RazaReduce}),

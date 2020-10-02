@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 import { NewRumianteComponent } from "../../share/components/new-rumiante/new-rumiante.component";
-import { ModalTerneroComponent } from "../ternero/modal-ternero/modal-ternero.component";
+import { ModalFullInfoComponent } from '../../share/components/modal-full-info/modal-full-info.component';
 
 @Component({
   selector: 'app-toro',
@@ -60,7 +60,7 @@ export class ToroPage implements OnInit {
 
   async detailModal(data){
     const modal = await this.modalCtrl.create({
-      component: ModalTerneroComponent,
+      component: ModalFullInfoComponent,
       componentProps: {data}
     });
     return await modal.present();

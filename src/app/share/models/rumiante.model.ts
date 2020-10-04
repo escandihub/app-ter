@@ -7,6 +7,13 @@ export interface Rumiante{
   grupo: string;
 }; 
 
+export interface Toro{
+  id: number,
+  nombre: string,
+  nacimiento: string,
+  edad: number,
+  raza: string
+}
 // export interface RumianteInsert{
 //   id: number;
 //   nombre: string;

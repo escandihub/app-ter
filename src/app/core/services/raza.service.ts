@@ -27,24 +27,29 @@ export class RazaService {
     return this.raza.asObservable();
   }
   loadRaza(){
-    let query = 'SELECT * FROM raza';
-    return this.db.database.executeSql(query, []).then(data => {
-      let raza: Raza[] = [];
-      
-      if(data.rows.length > 0){
-
-        for (let i = 0; i < data.rows.length; i++) {
-          console.log(data.rows.item(i).nombre);
-          raza.push({
-            id: data.rows.item(i).id,
-            nombre: data.rows.item(i).nombre,
-          });
+    return new Promise((resolve, reject) => {
+      let query = 'SELECT * FROM raza';
+      this.db.database.executeSql(query, []).then(data => {
+        let raza: Raza[] = [];
+        
+        if(data.rows.length > 0){
+  
+          for (let i = 0; i < data.rows.length; i++) {
+            console.log(data.rows.item(i).nombre);
+            raza.push({
+              id: data.rows.item(i).id,
+              nombre: data.rows.item(i).nombre,
+            });
+          }
+        }else{
+          console.log('sin datos :v');
         }
-      }else{
-        console.log('sin datos :v');
-      }
-      this.raza.next(raza);
-    });
+        resolve(raza)
+        // this.raza.next(raza);
+      }, (error) => {
+        reject(error)
+      });
+    })
   }
 
   NewRaza(nombreRaza){
@@ -54,19 +59,4 @@ export class RazaService {
     })
   }
 
-  fakeGetData(): Observable<Raza[]>{
-        //return this.http.get('https://jsonplaceholder.typicode.com/todos/1');
-        let a = [
-          {
-            id:1,
-            nombre: 'BIL'
-          },
-          {
-            id:2,
-            nombre: 'MASO'
-          },
-        ]
-        
-    return of(a)
-  }
 }

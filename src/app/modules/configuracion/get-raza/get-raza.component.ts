@@ -24,11 +24,11 @@ export class GetRazaComponent implements OnInit {
   ngOnInit() {
     this.razaServicio.isOk().subscribe(ready => {
       if(ready){
-        this.razaServicio.loadRaza().then(data => {
-          this.razaServicio.getRazaAS().subscribe(data => {
-            this.razas = data
-          })
-        })
+        // this.razaServicio.loadRaza().then(data => {
+        //   this.razaServicio.getRazaAS().subscribe(data => {
+        //     this.razas = data
+        //   })
+        // })
       }else{
         console.log('error en la coneccion del servicio ');
         

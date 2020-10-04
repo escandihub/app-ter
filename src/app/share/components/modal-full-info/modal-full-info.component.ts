@@ -39,12 +39,13 @@ export class ModalFullInfoComponent implements OnInit {
     private store: Store<any>,
     private razaService: RazaService
     ) {
-      store.pipe(select('razas')).subscribe(data => (this.razas = data.razas))
      }
 
   ngOnInit() {
+    this.razaService.loadRaza().then(razas => {
+      console.log(razas);
+    }).catch(err => console.log('eh?' + err))
     this.ternero = {...this.data}
-    this.store.dispatch( new GetRaza())
     console.log(this.razas);
     
   }

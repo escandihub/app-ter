@@ -57,5 +57,14 @@ export class MachoService {
         resolve(reponse)
       }), (error => reject(error))
     })
-  }
+  };
+
+  deleteToro(id: number) {
+    new Promise((resolve, reject) => {
+      let query = 'DELETE FROM rumiante WHERE rumiante.id = ?';
+      this.db.database.executeSql(query, [id]).then(response => {
+        resolve(resolve)
+      }), (error => reject(error))
+    })
+  };
 }

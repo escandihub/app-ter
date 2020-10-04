@@ -9,12 +9,12 @@ export enum RazaActionTypes {
 
 export class AddRaza implements Action {
   readonly type = RazaActionTypes.AddRaza;
-  constructor(public payload: { data: Raza[] }) { }
+  constructor(public payload: { data: Raza }) { }
 }
 
 export class CargaSucces implements Action {
   readonly type = RazaActionTypes.LoadSuccess
-  constructor(public payload: { data: Raza[] }) { }
+  constructor(public payload: { data }) { }
 }
 
 export class GetRaza implements Action {

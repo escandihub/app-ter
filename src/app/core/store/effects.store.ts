@@ -14,13 +14,21 @@ export class RazaEffects {
   ) { }
 
   @Effect()
-  LoadRazas$: Observable<Action> = this.actions$.pipe(
+  // LoadRazas$: Observable<Action> = this.actions$.pipe(
+  //   ofType(razaActions.RazaActionTypes.LoadRaza),
+  //   mergeMap(
+  //     action => this.razaService.fakeGetData().pipe(
+  //       map(razas => (new razaActions.CargaSucces({ data: razas }))),
+  //       catchError(err => EMPTY)
+  //     )
+  //   )
+  // )
+  LoadRazas$= this.actions$.pipe(
     ofType(razaActions.RazaActionTypes.LoadRaza),
     mergeMap(
-      action => this.razaService.fakeGetData().pipe(
-        map(razas => (new razaActions.CargaSucces({ data: razas }))),
-        catchError(err => EMPTY)
-      )
+      action => this.razaService.loadRaza().then(razas => {
+        new razaActions.CargaSucces({data: razas})
+      }).catch(errr => EMPTY)
     )
   )
 }

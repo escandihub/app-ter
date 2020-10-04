@@ -2,8 +2,10 @@ CREATE TABLE IF NOT EXISTS rumiante(id  INTEGER PRIMARY KEY AUTOINCREMENT, nombr
 CREATE TABLE IF NOT EXISTS raza(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre Text);
 CREATE TABLE IF NOT EXISTS grupo(id INTEGER PRIMARY KEY AUTOINCREMENT, nombre Text);
  
-INSERT or IGNORE INTO raza(id, nombre) VALUES(1, 'BILLMASTER');
-INSERT or IGNORE INTO raza(id, nombre) VALUES(2, 'BOG');
+INSERT or IGNORE INTO raza(id, nombre) VALUES(1, 'Simmental');
+INSERT or IGNORE INTO raza(id, nombre) VALUES(2, 'Brahman');
+INSERT or IGNORE INTO raza(id, nombre) VALUES(3, 'Guzerat');
+INSERT or IGNORE INTO raza(id, nombre) VALUES(4, 'suizo');
 
 INSERT or IGNORE INTO grupo(id, nombre) VALUES(1, 'Toro');
 INSERT or IGNORE INTO grupo(id, nombre) VALUES(2, 'Vaca');
@@ -11,7 +13,7 @@ INSERT or IGNORE INTO grupo(id, nombre) VALUES(3, 'Ternero');
 
 INSERT or IGNORE INTO rumiante(nombre, sexo, raza_id, tipo_id) VALUES('BILL', 1, 1,1);
 INSERT or IGNORE INTO rumiante(nombre, sexo, raza_id, tipo_id) VALUES('MOLY', 1, 1,1);
-INSERT or IGNORE INTO rumiante(nombre, sexo, raza_id, tipo_id) VALUES('MOLY', 0, 1,2);
+INSERT or IGNORE INTO rumiante(nombre, sexo, raza_id, tipo_id) VALUES('MOLY', 2, 1,2);
 INSERT or IGNORE INTO rumiante(nombre, sexo, raza_id, tipo_id) VALUES('MOLY', 1, 1,3);
 INSERT or IGNORE INTO rumiante(nombre, sexo, raza_id, tipo_id) VALUES('MOLY', 1, 1,3);
 

@@ -3,6 +3,9 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { DatabaseService } from "./database.service";
 import { Raza } from "../../share/models/raza.model";
 import { HttpClient } from '@angular/common/http';
+import { error } from 'protractor';
+import { resolve } from 'dns';
+import { rejects } from 'assert';
 
 /**
  * este servicio raza del rumiante
@@ -17,23 +20,23 @@ export class RazaService {
 
   raza = new BehaviorSubject([]);
   // constructor(private http: HttpClient) { 
-  constructor(private db: DatabaseService) { 
+  constructor(private db: DatabaseService) {
   }
-  isOk(){
+  isOk() {
     return this.db.isReady()
   }
 
-  getRazaAS(){
+  getRazaAS() {
     return this.raza.asObservable();
   }
-  loadRaza(){
+  loadRaza() {
     return new Promise((resolve, reject) => {
       let query = 'SELECT * FROM raza';
       this.db.database.executeSql(query, []).then(data => {
         let raza: Raza[] = [];
-        
-        if(data.rows.length > 0){
-  
+
+        if (data.rows.length > 0) {
+
           for (let i = 0; i < data.rows.length; i++) {
             console.log(data.rows.item(i).nombre);
             raza.push({
@@ -41,7 +44,7 @@ export class RazaService {
               nombre: data.rows.item(i).nombre,
             });
           }
-        }else{
+        } else {
           console.log('sin datos :v');
         }
         resolve(raza)
@@ -52,11 +55,21 @@ export class RazaService {
     })
   }
 
-  NewRaza(nombreRaza){
-    let query = 'INSERT INTO raza(nombre) VALUES(?)';
-    return this.db.database.executeSql(query, nombreRaza).then(data => {
-      this.loadRaza()
+  NewRaza(nombreRaza) {
+    return new Promise((resolve, reject) => {
+      let query = 'INSERT INTO raza(nombre) VALUES(?)';
+      this.db.database.executeSql(query, nombreRaza).then(data => {
+        resolve(data)
+      }), (error) => (reject(error))
     })
   }
 
+  updateRaza(newNombre, id) {
+    return new Promise((resolve, reject) => {
+      let query = 'UPDATE raza(nombre) VALUES(?) WHERE raza.id = ?';
+      this.db.database.executeSql(query, [newNombre, id]).then(resp => {
+        resolve(resp)
+      }).catch(error => reject(error))
+    })
+  }
 }

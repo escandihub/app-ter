@@ -29,7 +29,7 @@ export class DatabaseService{
         this.database = db;
         //corremos script method
         console.log('alimentando');
-        this.seeder();
+        //this.seeder();
       });
     });
   }

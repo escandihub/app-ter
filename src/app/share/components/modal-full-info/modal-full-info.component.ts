@@ -10,6 +10,7 @@ import { GetRaza } from "../../../core/store/action.store";
 import { RazaService } from '../../../core/services/raza.service';
 import { Rumiante } from "../../models/rumiante.model";
 import { Raza } from 'src/app/share/models/raza.model';
+import { MachoService } from 'src/app/core/services/macho.service';
 @Component({
   selector: 'app-modal-full',
   templateUrl: './modal-full-info.component.html',
@@ -36,7 +37,7 @@ export class ModalFullInfoComponent implements OnInit {
 
   constructor(
     public modalCtrl: ModalController,
-    private store: Store<any>,
+    private toroService: MachoService,
     private razaService: RazaService
     ) {
      }
@@ -56,6 +57,8 @@ export class ModalFullInfoComponent implements OnInit {
     });
   }
   async onSubmit(){
+    console.log(this.data);
+    // this.toroService.updateToro(this.data)
     console.log('on sumit');
     this.data = {...this.item}
     this.modalCtrl.dismiss({

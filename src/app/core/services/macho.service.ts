@@ -18,17 +18,19 @@ export class MachoService {
 
   public getAllMachos() {
     return new Promise((resolve, reject) => {
-      let query = 'SELECT rumiante.id, rumiante.nombre, rumiante.sexo, raza.nombre AS raza, grupo.nombre AS tipo From rumiante INNER JOIN raza on rumiante.raza_id = raza.id INNER JOIN grupo on rumiante.tipo_id = grupo.id WHERE grupo.id = 1';
+      let query = 'SELECT rumiante.id, rumiante.nombre, rumiante.sexo, raza.nombre AS raza, grupo.nombre AS tipo From rumiante INNER JOIN raza on rumiante.raza_id = raza.id INNER JOIN grupo on rumiante.tipo_id = grupo.id WHERE grupo.id = 1 ORDER BY rumiante.nombre';
       this.db.database.executeSql(query, []).then(data => {
-        let toros: Rumiante[] = [];
-
+        // let toros: Rumiante[] = [];
+        let toros = [];
+        console.log('datos en rumiantes');
+        console.log(data.rows.length);
         if (data.rows.length > 0) {
           for (let i = 0; i < data.rows.length; i++) {
             toros.push({
               id: data.rows.item(i).id,
               nombre: data.rows.item(i).nombre,
               sexo: data.rows.item(i).sexo,
-              raza: data.rows.item(i).raz,
+              raza: data.rows.item(i).raza,
               nacimiento: data.rows.item(i).nacimiento,
               grupo: data.rows.item(i).tipo
             });
@@ -41,10 +43,12 @@ export class MachoService {
 
   }
 
-  public newToro(toro: Array<any>) {
+  public newToro(toro) {
+    console.log(toro);
+    
     new Promise((resolve, reject) => {
       let query = 'INSERT INTO rumiante(nombre, sexo, nacimiento, raza_id, tipo_id) VALUES(?, ?, ?, ?, ?)'
-      return this.db.database.executeSql(query, toro).then(data => {
+      return this.db.database.executeSql(query, [toro.nombre, toro.sexo, toro.nacimiento, toro.raza, toro.grupo]).then(data => {
         resolve(data)
       }), (error => reject(error))
     })

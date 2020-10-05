@@ -7,11 +7,11 @@ import { Rumiante } from "../../models/rumiante.model";
   styleUrls: ['./card-info.component.scss'],
 })
 export class CardInfoComponent implements OnInit {
-
-  @Input() get datas(): Rumiante { return this.items; }
-  set datas(datas: Rumiante) {
-    this.items = datas;
-  };
+@Input() datas;
+  // @Input() get datas(): Rumiante { return this.items; }
+  // set datas(datas: Rumiante) {
+  //   this.items = datas;
+  // };
   @Input() tipo;
   protected items: Rumiante;
 

@@ -2,17 +2,20 @@ export interface Rumiante{
   id: number;
   nombre: string;
   sexo: boolean;
+  edad: number,
   nacimiento: string; //this is a date
-  raza: string; 
-  grupo: string;
+  raza: number; 
+  grupo: number;
 }; 
 
+// interfaz para mostrar puro texto 
 export interface Toro{
   id: number,
   nombre: string,
   nacimiento: string,
   edad: number,
-  raza: string
+  raza: string,
+  grupo: string
 }
 // export interface RumianteInsert{
 //   id: number;

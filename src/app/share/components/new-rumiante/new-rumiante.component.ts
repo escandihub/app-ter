@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 import { DatePicker } from '@ionic-native/date-picker/ngx';
+import { MachoService } from 'src/app/core/services/macho.service';
 @Component({
   selector: 'app-new-rumiante',
   templateUrl: './new-rumiante.component.html',
@@ -42,14 +43,15 @@ rumiante = new FormGroup({
   edad: new FormControl(''),
   nacimiento: new FormControl('', ),
   raza: new FormControl('', Validators.required), //gonna be an id
-  // grupo: new FormControl('', Validators.required), //gona be an id 
+  grupo: new FormControl(1), //gona be an id 
 })
-  constructor(public modalCtrl: ModalController, private datePicker: DatePicker) { }
+  constructor(public modalCtrl: ModalController, private datePicker: DatePicker, private toroService: MachoService) { }
 
   ngOnInit() {}
 
   onSubmit(){
     console.log(this.rumiante.value);
+    this.toroService.newToro(this.rumiante.value);
     
   }
   dismiss(){

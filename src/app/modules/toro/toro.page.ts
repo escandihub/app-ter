@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 
 import { NewRumianteComponent } from "../../share/components/new-rumiante/new-rumiante.component";
 import { ModalFullInfoComponent } from '../../share/components/modal-full-info/modal-full-info.component';
+import { MachoService } from 'src/app/core/services/macho.service';
+import { Toro  } from "../../share/models/rumiante.model";
 
 @Component({
   selector: 'app-toro',
@@ -11,37 +13,20 @@ import { ModalFullInfoComponent } from '../../share/components/modal-full-info/m
 })
 export class ToroPage implements OnInit {
 
-  toros = [
-    {
-      id: 1,
-      nombre: 'robert',
-      edad: 5,
-      raza: 'Billmaster',
-      img: 'someImage'
-    },
-    {
-      id: 2,
-      nombre: 'robert',
-      edad: 5,
-      raza: 'Billmaster',
-      img: 'someImage'
-    },
-    {
-      id: 3,
-      nombre: 'robert',
-      edad: 5,
-      raza: 'Billmaster',
-      img: 'someImage'
-    },
-  ];
+  toros;
 
   procesaPropagar(e) {
     console.log('procesaPropagar');
     this.detailModal(e)
   }
-  constructor(public modalCtrl: ModalController) { }
+  constructor(
+    private toroService: MachoService,
+    public modalCtrl: ModalController) { }
 
   ngOnInit() {
+    this.toroService.getAllMachos().then(toros => {
+      this.toros = toros      
+    })
   }
 
   // Aqui va a despachar el servicio que sera enviado al card-info

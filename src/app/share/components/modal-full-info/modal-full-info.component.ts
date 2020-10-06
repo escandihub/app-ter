@@ -22,7 +22,7 @@ export class ModalFullInfoComponent implements OnInit {
   set data(data) {
     this.rumiante = data
   }
-
+  @Input() tipoRumiante: string;
   ternero;
   razas;
   rumiante: Bovino;
@@ -64,11 +64,22 @@ export class ModalFullInfoComponent implements OnInit {
     });
   }
   async onSubmit() {
-    console.log(this.data);
-    this.toroService.updateToro(this.rumiante)
+    console.log(this.rumiante);
+    switch(this.tipoRumiante){
+      case 'Toro':
+        this.toroService.updateToro(this.rumiante)
+        break
+      case 'Madre':
+        break
+      case 'Ternero':
+        break
+      default: {
+        console.log('que paso amgio');
+      }
+    };
 
     //send a copy of the last state
-    this.data = { ...this.rumiante }
+    //this.data = { ...this.rumiante }
     this.modalCtrl.dismiss({
       data: this.data,
     })
@@ -87,4 +98,9 @@ export class ModalFullInfoComponent implements OnInit {
   compareWithFn = (o1, o2) => {
     return o1 === o2;
   };
+  
+  //output to select the raza selected
+  razaSeleccionada(e){
+    this.rumiante.razaID = e.target.value
+  }
 }

@@ -73,9 +73,9 @@
               value="brown"
               okText="Definir"
               cancelText="Cancelar"
-              [(ngModel)]="rumiante.razaID"
+              (ionChange)="razaSeleccionada($event)"
               [compareWith]="compareWith"
-              value="{{ razaSelected }}"
+              value="{{ rumiante.razaID }}"
             >
               <ion-select-option
                 *ngFor="let raza of razas"

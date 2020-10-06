@@ -18,14 +18,14 @@ import { MachoService } from 'src/app/core/services/macho.service';
 })
 export class ModalFullInfoComponent implements OnInit {
    @Input() 
-   get data(): Bovino { return this.item }
+   get data(): Bovino { return this.rumiante }
    set data(data){
-     this.item = data
+     this.rumiante = data
    }
 
   ternero;
   razas;
-  item: Bovino;
+  rumiante: Bovino;
   isDisable: boolean;
 
   compareWith : any ;
@@ -49,16 +49,14 @@ export class ModalFullInfoComponent implements OnInit {
   ngOnInit() {
     this.razaService.loadRaza().then(razas => {
       this.razas = razas
-      console.log(this.ternero);
+      console.log(this.rumiante);
       
     this.razaSelected = this.data.razaID.toString();
     this.compareWith = this.compareWithFn;
     
     }).catch(err => console.log('eh?' + err))
     this.ternero = this.data;
-    this.data.nacimiento != '' ? this.data.nacimiento = 'none' : 
-    console.log(this.razas);
-    
+    this.data.nacimiento != '' ? this.data.nacimiento = 'none' : ''
   }
 
   dismiss(){
@@ -68,9 +66,10 @@ export class ModalFullInfoComponent implements OnInit {
   }
   async onSubmit(){
     console.log(this.data);
-    this.toroService.updateToro(this.data)
+    this.toroService.updateToro(this.rumiante)
     console.log('on sumit');
-    this.data = {...this.item}
+    //send a copy of the last state
+    this.data = {...this.rumiante}
     this.modalCtrl.dismiss({
       data: this.data,
     })

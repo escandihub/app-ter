@@ -8,7 +8,7 @@ import { select, Store } from '@ngrx/store';
 import { GetRaza } from "../../../core/store/action.store";
 
 import { RazaService } from '../../../core/services/raza.service';
-import { Rumiante } from "../../models/rumiante.model";
+import { Bovino, Rumiante } from "../../models/rumiante.model";
 import { Raza } from 'src/app/share/models/raza.model';
 import { MachoService } from 'src/app/core/services/macho.service';
 @Component({
@@ -18,21 +18,25 @@ import { MachoService } from 'src/app/core/services/macho.service';
 })
 export class ModalFullInfoComponent implements OnInit {
    @Input() 
-   get data(): Rumiante { return this.item }
+   get data(): Bovino { return this.item }
    set data(data){
      this.item = data
    }
 
-  ternero = {};
-  razas = [];
-  item: Rumiante;
+  ternero;
+  razas;
+  item: Bovino;
   isDisable: boolean;
+
+  compareWith : any ;
+  razaSelected : string ;
 
   @Output('ngModelChange') upNombre = new EventEmitter();
   @Output('ngModelChange') upEdad = new EventEmitter();
   @Output('ngModelChange') upNacimiento = new EventEmitter();
   @Output('ngModelChange') upRaza = new EventEmitter();
   @Output('ngModelChange') upVendido = new EventEmitter();
+  @Output('ngModelChange') selectRaza = new EventEmitter();
    
 
   constructor(
@@ -44,9 +48,15 @@ export class ModalFullInfoComponent implements OnInit {
 
   ngOnInit() {
     this.razaService.loadRaza().then(razas => {
-      console.log(razas);
+      this.razas = razas
+      console.log(this.ternero);
+      
+    this.razaSelected = this.data.razaID.toString();
+    this.compareWith = this.compareWithFn;
+    
     }).catch(err => console.log('eh?' + err))
-    this.ternero = {...this.data}
+    this.ternero = this.data;
+    this.data.nacimiento != '' ? this.data.nacimiento = 'none' : 
     console.log(this.razas);
     
   }
@@ -58,7 +68,7 @@ export class ModalFullInfoComponent implements OnInit {
   }
   async onSubmit(){
     console.log(this.data);
-    // this.toroService.updateToro(this.data)
+    this.toroService.updateToro(this.data)
     console.log('on sumit');
     this.data = {...this.item}
     this.modalCtrl.dismiss({
@@ -75,4 +85,8 @@ export class ModalFullInfoComponent implements OnInit {
   changeNacimiento(event){
     this.isDisable  = true
   }
+  
+  compareWithFn = (o1, o2) => {
+    return o1 === o2;
+  };
 }

@@ -67,8 +67,23 @@
             ></ion-input>
           </ion-item>
           <ion-item>
-            <ion-label position="stacked">raza</ion-label>
-            <ion-input [(ngModel)]="ternero.raza" type="text" name="raza"> </ion-input>
+            <ion-label>raza</ion-label>
+            
+            <ion-select
+              value="brown"
+              okText="Definir"
+              cancelText="Cancelar"
+              [(ngModel)]="ternero.razaID" 
+              [compareWith]="compareWith" 
+              value="{{ razaSelected }}"
+            >
+            <ion-select-option  *ngFor="let raza of razas" value="{{ raza.id }}" >
+              {{ raza.nombre }}
+            </ion-select-option>
+            </ion-select>
+            <!-- <ion-label position="stacked">raza</ion-label>
+            <ion-input [(ngModel)]="ternero.raza" type="text" name="raza">
+            </ion-input> -->
           </ion-item>
           <ion-item>
             <ion-label> Vendido </ion-label>

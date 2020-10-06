@@ -4,7 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { NewRumianteComponent } from "../../share/components/new-rumiante/new-rumiante.component";
 import { ModalFullInfoComponent } from '../../share/components/modal-full-info/modal-full-info.component';
 import { MachoService } from 'src/app/core/services/macho.service';
-import { Toro  } from "../../share/models/rumiante.model";
+
 
 @Component({
   selector: 'app-toro',

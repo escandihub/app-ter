@@ -18,7 +18,7 @@ export class MachoService {
 
   public getAllMachos() {
     return new Promise((resolve, reject) => {
-      let query = 'SELECT rumiante.id, rumiante.nombre, rumiante.sexo, raza.nombre AS raza, raza.id AS razaID, grupo.nombre AS tipo From rumiante INNER JOIN raza on rumiante.raza_id = raza.id INNER JOIN grupo on rumiante.tipo_id = grupo.id WHERE grupo.id = 1 ORDER BY rumiante.nombre';
+      let query = 'SELECT rumiante.id, rumiante.nombre, rumiante.sexo, rumiante.edad,  raza.nombre AS raza, raza.id AS razaID, grupo.nombre AS tipo From rumiante INNER JOIN raza on rumiante.raza_id = raza.id INNER JOIN grupo on rumiante.tipo_id = grupo.id WHERE grupo.id = 1 ORDER BY rumiante.nombre';
       this.db.database.executeSql(query, []).then(data => {
         // let toros: Rumiante[] = [];
         let toros = [];
@@ -31,6 +31,7 @@ export class MachoService {
               nombre: data.rows.item(i).nombre,
               sexo: data.rows.item(i).sexo,
               raza: data.rows.item(i).raza,
+              edad: data.rows.item(i).edad,
               razaID: data.rows.item(i).razaID,
               nacimiento: data.rows.item(i).nacimiento,
               grupo: data.rows.item(i).tipo
@@ -59,8 +60,8 @@ export class MachoService {
     console.log('updating');
     console.log(toro);
     new Promise((resolve, reject) => {
-      let query = `UPDATE rumiante SET nombre = ?, nacimiento = ?, edad = ? WHERE rumiante.id = ${toro.id}`;
-      this.db.database.executeSql(query, [toro.nombre, toro.nacimiento, toro.edad]).then(reponse => {
+      let query = `UPDATE rumiante SET nombre = ?, nacimiento = ?, edad = ?, raza_id = ? WHERE rumiante.id = ${toro.id}`;
+      this.db.database.executeSql(query, [toro.nombre, toro.nacimiento, toro.edad, toro.razaID]).then(reponse => {
         resolve(reponse)
       }), (error => reject(error))
     })

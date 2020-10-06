@@ -9,12 +9,13 @@ export interface Rumiante{
 }; 
 
 // interfaz para mostrar puro texto 
-export interface Toro{
+export interface Bovino{
   id: number,
   nombre: string,
   nacimiento: string,
   edad: number,
   raza: string,
+  razaID: number,
   grupo: string
 }
 // export interface RumianteInsert{

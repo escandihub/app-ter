@@ -29,7 +29,8 @@ export class DatabaseService{
         this.database = db;
         //corremos script method
         console.log('alimentando');
-        //this.seeder();
+        //this.clear().then(res => console.log('se ha limpiado'))
+        //this.seeder();  
       });
     });
   }
@@ -69,7 +70,7 @@ export class DatabaseService{
       return new Promise((resolve, reject) =>
       {
          this.sqlPorter
-         .wipeDb(this.database)
+         .wipeDb('database_name.sql')
          .then((data) =>
          {
             resolve(data);

@@ -17,19 +17,19 @@ import { MachoService } from 'src/app/core/services/macho.service';
   styleUrls: ['./modal-full-info.component.scss'],
 })
 export class ModalFullInfoComponent implements OnInit {
-   @Input() 
-   get data(): Bovino { return this.rumiante }
-   set data(data){
-     this.rumiante = data
-   }
+  @Input()
+  get data(): Bovino { return this.rumiante }
+  set data(data) {
+    this.rumiante = data
+  }
 
   ternero;
   razas;
   rumiante: Bovino;
   isDisable: boolean;
 
-  compareWith : any ;
-  razaSelected : string ;
+  compareWith: any;
+  razaSelected: string;
 
   @Output('ngModelChange') upNombre = new EventEmitter();
   @Output('ngModelChange') upEdad = new EventEmitter();
@@ -37,54 +37,53 @@ export class ModalFullInfoComponent implements OnInit {
   @Output('ngModelChange') upRaza = new EventEmitter();
   @Output('ngModelChange') upVendido = new EventEmitter();
   @Output('ngModelChange') selectRaza = new EventEmitter();
-   
+
 
   constructor(
     public modalCtrl: ModalController,
     private toroService: MachoService,
     private razaService: RazaService
-    ) {
-     }
+  ) { }
 
   ngOnInit() {
     this.razaService.loadRaza().then(razas => {
       this.razas = razas
       console.log(this.rumiante);
-      
-    this.razaSelected = this.data.razaID.toString();
-    this.compareWith = this.compareWithFn;
-    
+
+      this.razaSelected = this.data.razaID.toString();
+      this.compareWith = this.compareWithFn;
+
     }).catch(err => console.log('eh?' + err))
     this.ternero = this.data;
     this.data.nacimiento != '' ? this.data.nacimiento = 'none' : ''
   }
 
-  dismiss(){
+  dismiss() {
     this.modalCtrl.dismiss({
       'dismissed': true
     });
   }
-  async onSubmit(){
+  async onSubmit() {
     console.log(this.data);
     this.toroService.updateToro(this.rumiante)
-    console.log('on sumit');
+
     //send a copy of the last state
-    this.data = {...this.rumiante}
+    this.data = { ...this.rumiante }
     this.modalCtrl.dismiss({
       data: this.data,
     })
   }
-/** control de eventos cuando se edite  */
-  alterNombre(event){
-    this.isDisable  = true
+  /** control de eventos cuando se edite  */
+  alterNombre(event) {
+    this.isDisable = true
   }
-  changeEdad(event){
-    this.isDisable  = true
+  changeEdad(event) {
+    this.isDisable = true
   }
-  changeNacimiento(event){
-    this.isDisable  = true
+  changeNacimiento(event) {
+    this.isDisable = true
   }
-  
+
   compareWithFn = (o1, o2) => {
     return o1 === o2;
   };

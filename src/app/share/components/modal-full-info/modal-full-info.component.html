@@ -29,7 +29,7 @@
             <ion-input
               type="text"
               name="nombre"
-              [(ngModel)]="ternero.nombre"
+              [(ngModel)]="rumiante.nombre"
               (ngModelChange)="alterNombre($event)"
             ></ion-input>
           </ion-item>
@@ -39,7 +39,7 @@
                 <ion-item>
                   <ion-label position="stacked">edad</ion-label>
                   <ion-input
-                    [(ngModel)]="ternero.edad"
+                    [(ngModel)]="rumiante.edad"
                     (ngModelChange)="changeEdad($event)"
                     type="number"
                     name="edad"
@@ -60,7 +60,7 @@
           <ion-item>
             <ion-label position="stacked">nacimiento</ion-label>
             <ion-input
-              [(ngModel)]="ternero.nacimiento"
+              [(ngModel)]="rumiante.nacimiento"
               type="text"
               name="nacimiento"
               (ngModelChange)="changeNacimiento($event)"
@@ -68,18 +68,21 @@
           </ion-item>
           <ion-item>
             <ion-label>raza</ion-label>
-            
+
             <ion-select
               value="brown"
               okText="Definir"
               cancelText="Cancelar"
-              [(ngModel)]="ternero.razaID" 
-              [compareWith]="compareWith" 
+              [(ngModel)]="rumiante.razaID"
+              [compareWith]="compareWith"
               value="{{ razaSelected }}"
             >
-            <ion-select-option  *ngFor="let raza of razas" value="{{ raza.id }}" >
-              {{ raza.nombre }}
-            </ion-select-option>
+              <ion-select-option
+                *ngFor="let raza of razas"
+                value="{{ raza.id }}"
+              >
+                {{ raza.nombre }}
+              </ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>

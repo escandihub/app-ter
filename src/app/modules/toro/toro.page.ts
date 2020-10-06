@@ -14,7 +14,7 @@ import { MachoService } from 'src/app/core/services/macho.service';
 export class ToroPage implements OnInit {
 
   toros;
-
+  tipoRumiante = "Toro";
   procesaPropagar(e) {
     console.log('procesaPropagar');
     this.detailModal(e)
@@ -46,7 +46,9 @@ export class ToroPage implements OnInit {
   async detailModal(data){
     const modal = await this.modalCtrl.create({
       component: ModalFullInfoComponent,
-      componentProps: {data}
+      componentProps: {
+        data, 
+        tipoRumiante: this.tipoRumiante}
     });
     return await modal.present();
   }

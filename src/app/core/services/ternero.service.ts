@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { error } from 'protractor';
+import { Bovino } from 'src/app/share/models/rumiante.model';
 import { DatabaseService } from './database.service';
 
 @Injectable({
@@ -27,6 +29,15 @@ export class TerneroService {
         }
         resolve(terneros)
       }), (error => (reject(error)))
+    })
+  }
+
+  updateTernero(ternero: Bovino){
+    let query = `UPDATE rumiante SET nombre = ?, nacimiento = ?, edad = ?, raza_id = ? WHERE rumiante.id = ${ternero.id}`;
+    new Promise((resolve, reject) => {
+      this.db.database.executeSql(query, [ternero.nombre, ternero.nacimiento, ternero.edad, ternero.razaID]).then(resp => {
+        resolve(resp)
+      }), (error => reject(error))
     })
   }
 }//endClass

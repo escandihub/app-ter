@@ -14,6 +14,7 @@ import { MachoService } from 'src/app/core/services/macho.service';
 import { GlobalService } from 'src/app/core/services/global.service';
 import { Console } from 'console';
 import { error } from 'protractor';
+import { TerneroService } from 'src/app/core/services/ternero.service';
 @Component({
   selector: 'app-modal-full',
   templateUrl: './modal-full-info.component.html',
@@ -42,6 +43,7 @@ export class ModalFullInfoComponent implements OnInit {
     public modalCtrl: ModalController,
     private toroService: MachoService,
     private razaService: RazaService,
+    private terneroService: TerneroService,
     private rumianteService: GlobalService
   ) { }
 
@@ -73,6 +75,7 @@ export class ModalFullInfoComponent implements OnInit {
       case 'Madre':
         break
       case 'Ternero':
+        this.terneroService.updateTernero(this.rumiante)
         break
       default: {
         console.log('que paso amgio');

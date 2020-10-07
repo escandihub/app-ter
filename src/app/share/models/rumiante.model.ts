@@ -4,8 +4,7 @@ export interface Rumiante{
   sexo: boolean;
   edad: number,
   nacimiento: string; //this is a date
-  raza: number; 
-  grupo: number;
+  razaID: number;
 }; 
 
 // interfaz para mostrar puro texto 
@@ -17,6 +16,12 @@ export interface Bovino{
   raza: string,
   razaID: number,
   grupo: string
+};
+
+export interface showRumiante{
+  id: number,
+  nombre: string,
+  raza: string
 }
 // export interface RumianteInsert{
 //   id: number;

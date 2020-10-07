@@ -8,24 +8,23 @@ import { select, Store } from '@ngrx/store';
 import { GetRaza } from "../../../core/store/action.store";
 
 import { RazaService } from '../../../core/services/raza.service';
-import { Bovino, Rumiante } from "../../models/rumiante.model";
+import { Bovino, Rumiante, showRumiante } from "../../models/rumiante.model";
 import { Raza } from 'src/app/share/models/raza.model';
 import { MachoService } from 'src/app/core/services/macho.service';
+import { GlobalService } from 'src/app/core/services/global.service';
+import { Console } from 'console';
+import { error } from 'protractor';
 @Component({
   selector: 'app-modal-full',
   templateUrl: './modal-full-info.component.html',
   styleUrls: ['./modal-full-info.component.scss'],
 })
 export class ModalFullInfoComponent implements OnInit {
-  @Input()
-  get data(): Bovino { return this.rumiante }
-  set data(data) {
-    this.rumiante = data
-  }
+  @Input() data: showRumiante;
   @Input() tipoRumiante: string;
   ternero;
   razas;
-  rumiante: Bovino;
+  rumiante ;
   isDisable: boolean;
 
   compareWith: any;
@@ -42,20 +41,22 @@ export class ModalFullInfoComponent implements OnInit {
   constructor(
     public modalCtrl: ModalController,
     private toroService: MachoService,
-    private razaService: RazaService
+    private razaService: RazaService,
+    private rumianteService: GlobalService
   ) { }
 
   ngOnInit() {
+    this.rumianteService.getRumiante(this.data.id).then(rumiante => {
+      this.rumiante = rumiante
+    }).catch(error => console.log(error))
+
     this.razaService.loadRaza().then(razas => {
       this.razas = razas
-      console.log(this.rumiante);
-
-      this.razaSelected = this.data.razaID.toString();
-      this.compareWith = this.compareWithFn;
-
+      // fn that compare to select by default 
+      this.compareWith = this.compareWithFn; 
     }).catch(err => console.log('eh?' + err))
     this.ternero = this.data;
-    this.data.nacimiento != '' ? this.data.nacimiento = 'none' : ''
+    // this.data.nacimiento != '' ? this.data.nacimiento = 'none' : ''
   }
 
   dismiss() {
@@ -98,7 +99,7 @@ export class ModalFullInfoComponent implements OnInit {
   compareWithFn = (o1, o2) => {
     return o1 === o2;
   };
-  
+
   //output to select the raza selected
   razaSeleccionada(e){
     this.rumiante.razaID = e.target.value

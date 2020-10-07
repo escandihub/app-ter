@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TerneroService } from 'src/app/core/services/ternero.service';
 import { ModalFullInfoComponent } from '../../share/components/modal-full-info/modal-full-info.component';
 
 @Component({
@@ -13,39 +14,16 @@ export class TerneroPage implements OnInit {
   /**
    * hard code of SQLite DATA
    */
-  terneros = [
-    {
-      id: 1,
-      nombre: 'CHil',
-      edad: 5,
-      nacimiento: '11/09/2019',
-      raza: 'Billmaster',
-      grupo: 'ternero',
-      img: 'someImage'
-    },
-    {
-      id: 2,
-      nombre: 'Colosio',
-      edad: 5,
-      nacimiento: '11/09/2019',
-      raza: 'Billmaster',
-      grupo: 'ternero',
-      img: 'someImage'
-    },
-    {
-      id: 3,
-      nombre: 'Negro',
-      edad: 5,
-      nacimiento: '11/09/2019',
-      raza: 'Billmaster',
-      grupo: 'ternero',
-      img: 'someImage'
-    },
-  ];
+  terneros;
 
-  constructor(public modalCtrl: ModalController) { }
+  constructor(
+    private terneroService: TerneroService,
+    public modalCtrl: ModalController) { }
 
   ngOnInit() {
+    this.terneroService.getTerneros().then(terneros => {
+      this.terneros = terneros
+    })
   }
   // metodo que le llega de 'share/components'
   procesaPropagar(e){
@@ -61,7 +39,10 @@ export class TerneroPage implements OnInit {
   async showModal(data){
     const modal = await this.modalCtrl.create({
       component: ModalFullInfoComponent,
-      componentProps: {data}
+      componentProps: {
+        data,
+        tipoRumiante: 'Ternero'
+      }
     });
     //return 
     await modal.present();
